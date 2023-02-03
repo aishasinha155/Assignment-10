@@ -1,0 +1,40 @@
+int count(Node* root,int ll,int rr){
+        Node* root1=root;
+        if(root->left==NULL && root->right==NULL)
+        return ll;
+         while(root->left!=NULL){
+            ll++;
+            root=root->left;
+        }
+         while(root1->right!=NULL){
+            rr++;
+            root1=root1->right;
+        }
+        int max=ll>rr?ll:rr;
+        return max;
+        }
+        
+        
+    int height(Node* root) {
+        if(root->left==NULL && root->right==NULL)
+        return 0;
+        Node* root1=root;
+         int ll=0,rr=0,max=0,r;
+        while(root!=NULL){
+        r=count(root,ll,rr);
+        if(r>max)
+        max=r;
+         root=root->left;
+         ll++;
+         rr++;
+        }
+         int l1=0,r1=0,max1=0,R;
+        while(root1!=NULL){
+        R=count(root1,l1,r1);
+        max1=R;
+         root1=root1->right;
+         l1++;
+         r1++;
+        }
+        return (max>max1?max:max1);
+    }
